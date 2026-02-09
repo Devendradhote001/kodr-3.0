@@ -1,6 +1,6 @@
 import React from "react";
 
-const Home = ({ fn }) => {
+const Home = ({fn}) => {
   let count = 10;
 
   fn(count);
