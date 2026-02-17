@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductCard = ({ elem, setCartItems }) => {
+const ProductCard = ({ elem, addToCart, quantity, handleDecrement }) => {
   return (
     <div className="h-[45vh] w-[19%] flex flex-col gap-4 bg-white p-2 rounded-xl">
       <div className="h-[60%]">
@@ -24,16 +24,31 @@ const ProductCard = ({ elem, setCartItems }) => {
           <button className="py-2 px-4 rounded-xl text-white bg-green-600">
             Buy Now
           </button>
-          <button
-            onClick={() => {
-              setCartItems((prev) => [...prev, { ...elem, quantity: 1 }]);
-            }}
-            className="py-2 px-4 rounded-xl text-white bg-black"
-          >
-            Add to cart
-          </button>
 
-          
+          {quantity > 0 ? (
+            <div className="flex gap-4 items-center">
+              <p
+                onClick={() => handleDecrement(elem.id)}
+                className="bg-red-500 p-2 text-white text-xl"
+              >
+                -
+              </p>
+              <p className="text-xl">{quantity}</p>
+              <p
+                onClick={() => addToCart(elem.id)}
+                className="bg-blue-500 p-2 text-white text-xl"
+              >
+                +
+              </p>
+            </div>
+          ) : (
+            <button
+              onClick={() => addToCart(elem.id)}
+              className="py-2 px-4 rounded-xl text-white bg-black"
+            >
+              Add to cart
+            </button>
+          )}
         </div>
       </div>
     </div>
